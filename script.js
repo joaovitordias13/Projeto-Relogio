@@ -1,35 +1,36 @@
-let digitalElement = document.querySelector('.digital');
-let sElement = document.querySelector('.p_s');
-let mElement = document.querySelector('.p_m');
-let hElement = document.querySelector('.p_h');
+let time = document.querySelector('.time');
+let day = document.querySelector('.day');
+let midday = document.querySelector('.midday');
 
-function updateClock() {
-   let now = new Date();
-   let hour = now.getHours();
-   let minute = now.getMinutes();
-   let second = now.getSeconds();
+let clock = setInterval(
+    function calcTime() {
+        let now = new Date();
+        let hour = now.getHours();
+        let minute = now.getMinutes();
+        let second = now.getSeconds();
 
+     
 
-   digitalElement.innerHTML = `${fixZero(hour)}:${fixZero(minute)}:${fixZero(second)}`;
+        let days = [
+            'Segunda-Feira',
+            'Terça-Feira',
+            'Quarta-Feira',
+            'Quinta-Feira',
+            'Sexta-Feira',
+            'Sábado',
+            "Domingo"
+        ];
+        day.textContent = days[date_nowgetDay()];
+ 
+        middayValue = hour > 12 ? "PM" : 'AM';
+        if(hour = 0) {
+            hour = 12;
+        }else if (hour > 12) {
+            hour -= 12;
+        }
+        hour = hour < 10 ? "0" + hour : hour;
+        minute = minute < 10 ? "0" + minute : minute;
+        second = second < 10 ? "0" + second : second;
 
-   let sDeg = ((360 / 60) * second) - 90;
-   let mDeg =  ((360 / 60) * minute) - 90;
-   let hDeg =  ((360 / 12) * hour) - 90;
-
-   sElement.style.transform = `rotate(${sDeg}deg)`;
-   mElement.style.transform = `rotate(${mDeg}deg)`;
-   hElement.style.transform = `rotate(${hDeg}deg)`;
-
-
-}
-
-function fixZero(time) {
-    if(time < 10) {
-        return '0'+time
-    }else {
-        return time;
-    }
-    // Jeito mais simplificado return time < 10 ? `0${time}` : time;
-}
-setInterval(updateClock, 1000);
-updateClock();
+    },1000
+);
