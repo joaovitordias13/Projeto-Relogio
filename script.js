@@ -11,13 +11,13 @@ let clock = setInterval(
         let middayValue = "AM";
 
         let days = [
+            "Domingo",
             'Segunda-Feira',
             'Terça-Feira',
             'Quarta-Feira',
             'Quinta-Feira',
             'Sexta-Feira',
             'Sábado',
-            "Domingo"
         ];
         day.textContent = days[now.getDay()];
  
